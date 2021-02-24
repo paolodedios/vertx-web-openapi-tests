@@ -1,28 +1,5 @@
-= Create Vert.x Web Router from an OpenAPI document
+= Vert.x OpenAPI based Web Router from an
 :page-permalink: /
-:page-github: vertx-howtos/web-and-openapi-howto
-
-This document will show you how to use your OpenAPI document to create a Vert.x Web Router that validates and extract incoming request parameters.
-
-== What you will build
-
-You will build a Vert.x application that manages an in-memory list of pets and serves it through the Petstore API https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v3.0/petstore.yaml
-
-== What you need
-
-* A text editor or IDE
-* Java 8 higher
-* Maven
-
-== Create a project
-
-Here is the content of the `pom.xml` file you should be using:
-
-[source,xml,role="collapsed"]
-.Maven `pom.xml`
-----
-include::pom.xml[]
-----
 
 == Load the OpenAPI document
 
