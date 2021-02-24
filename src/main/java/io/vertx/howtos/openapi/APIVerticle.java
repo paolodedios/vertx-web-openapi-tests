@@ -32,6 +32,26 @@ public class APIVerticle extends AbstractVerticle {
   public void start(Promise<Void> startPromise) {
     RouterBuilder.create(this.vertx, "petstore.yaml")
       .onSuccess(routerBuilder -> {
+
+        routerBuilder.operation("createAccount").handler(routingContext -> {
+          RequestParameters params = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY); // <1>
+          JsonObject account = params.body().getJsonObject(); // <2>
+          routingContext
+            .response()
+            .setStatusCode(200)
+            .putHeader(HttpHeaders.CONTENT_TYPE, "application/json")
+            .end(account.encode()); // <3>
+        });
+        routerBuilder.operation("createAccountMember").handler(routingContext -> {
+          RequestParameters params = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY); // <1>
+          JsonObject accountMember = params.body().getJsonObject(); // <2>
+          routingContext
+            .response()
+            .setStatusCode(200)
+            .putHeader(HttpHeaders.CONTENT_TYPE, "application/json")
+            .end(accountMember.encode()); // <3>
+        });
+
         // Add routes handlers
         // tag::listPetsHandler[]
         routerBuilder.operation("listPets").handler(routingContext ->
@@ -90,6 +110,8 @@ public class APIVerticle extends AbstractVerticle {
             .end(errorObject.encode()); // <4>
         });
         router.errorHandler(400, routingContext -> {
+          routingContext.failure().printStackTrace();
+
           JsonObject errorObject = new JsonObject()
             .put("code", 400)
             .put("message",
@@ -109,7 +131,11 @@ public class APIVerticle extends AbstractVerticle {
         // end::routerGen[]
         startPromise.complete(); // Complete the verticle start
       })
-      .onFailure(startPromise::fail);
+      .onFailure(cause -> {
+              System.err.println(cause);
+              cause.printStackTrace();
+              startPromise.fail(cause);
+      });
   }
 
   @Override
