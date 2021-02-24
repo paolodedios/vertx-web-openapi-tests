@@ -1,4 +1,4 @@
-= Vert.x OpenAPI based Web Router from an
+= Vert.x OpenAPI based Web Router
 :page-permalink: /
 
 == Load the OpenAPI document
@@ -96,17 +96,7 @@ $ curl http://localhost:8080/pets
 [{"id":1,"name":"Fufi","tag":"ABC"},{"id":2,"name":"Garfield","tag":"ABC"},{"id":3,"name":"Puffa","tag":"ABC"},{"id":4,"name":"Alan"}]
 ----
 
-== Summary
-
-This how-to explained to you:
-
-. How to create your Vert.x Web Router starting from your OpenAPI document
-. How to extract parsed request parameters
-. How to write Json responses
-. How to define router wide error handlers
-. How to start an HTTP Server and mount the generated router
-
-== See also
+== References
 
 * https://vertx.io/docs/vertx-web/java/[Vert.x Web Documentation]
 * https://vertx.io/docs/vertx-web-openapi/java/[Vert.x Web OpenAPI]
