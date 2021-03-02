@@ -25,7 +25,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ResponseEnvelope"
 
-  /accounts/{accountId}/members:
+  /manager/{accountId}/members:
     post:
       operationId: createAccountMember
       parameters:
